@@ -1,0 +1,7 @@
+#!/usr/bin/env jruby
+#
+# crtscat: Start the scat web application
+#
+
+require 'scat'
+rackup --env production File.dirname(__FILE__) + '../config.ru'

@@ -1,0 +1,60 @@
+/*
+Syntax error: Properties are only allowed within rules, directives, or other properties.
+        on line 18 of ./public/stylesheets/sass/scat.scss
+
+13: $rule_color: silver;
+14: $watermark: #cccccc;
+15: $quote_bg: white;
+16: 
+17: html {
+18:   background-color: #e0e0e0; }
+19: 
+20: body {
+21:   font-size: 100%;
+22:   font-family: $default_fonts;
+23:   color: $text_color; }
+
+Backtrace:
+./public/stylesheets/sass/scat.scss:18
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/tree/visitors/check_nesting.rb:12:in `visit'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+org/jruby/RubyArray.java:2336:in `collect'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/tree/visitors/check_nesting.rb:26:in `visit_children'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/tree/visitors/check_nesting.rb:33:in `visit_root'
+org/jruby/RubyKernel.java:2096:in `send'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/tree/visitors/check_nesting.rb:14:in `visit'
+org/jruby/RubyKernel.java:2096:in `send'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/tree/visitors/base.rb:24:in `visit'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/tree/root_node.rb:21:in `render'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/engine.rb:299:in `_render'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/engine.rb:246:in `render'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/plugin/compiler.rb:332:in `update_stylesheet'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/plugin/compiler.rb:203:in `update_stylesheets'
+org/jruby/RubyArray.java:1603:in `each'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/plugin.rb:81:in `update_stylesheets'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/plugin.rb:54:in `check_for_updates'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/sass-3.1.16/lib/sass/plugin/rack.rb:51:in `call'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:205:in `context'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:200:in `call'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/rack-1.4.1/lib/rack/commonlogger.rb:20:in `call'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/rack-1.4.1/lib/rack/lint.rb:48:in `_call'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/rack-1.4.1/lib/rack/lint.rb:36:in `call'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/rack-1.4.1/lib/rack/showexceptions.rb:24:in `call'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/rack-1.4.1/lib/rack/commonlogger.rb:20:in `call'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/rack-1.4.1/lib/rack/chunked.rb:43:in `call'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/rack-1.4.1/lib/rack/content_length.rb:14:in `call'
+/Library/Frameworks/JRuby.framework/Gems/1.8/gems/rack-1.4.1/lib/rack/handler/webrick.rb:59:in `service'
+/Library/Frameworks/JRuby.framework/Versions/1.6.4/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/Library/Frameworks/JRuby.framework/Versions/1.6.4/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/Library/Frameworks/JRuby.framework/Versions/1.6.4/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+org/jruby/RubyProc.java:274:in `call'
+org/jruby/RubyProc.java:233:in `call'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Properties are only allowed within rules, directives, or other properties.\A         on line 18 of ./public/stylesheets/sass/scat.scss\A \A 13: $rule_color: silver;\A 14: $watermark: #cccccc;\A 15: $quote_bg: white;\A 16: \A 17: html {\A 18:   background-color: #e0e0e0; }\A 19: \A 20: body {\A 21:   font-size: 100%;\A 22:   font-family: $default_fonts;\A 23:   color: $text_color; }"; }
