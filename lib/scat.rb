@@ -6,7 +6,10 @@ require 'scat/authorization'
 require 'scat/autocomplete'
 require 'scat/specimen_edit'
 
-module Scat 
+module Scat
+  # The standard Scat application error.
+  class Error < RuntimeError; end
+   
   class App < Sinatra::Base
     include Authorization, Autocomplete
     
@@ -20,7 +23,7 @@ module Scat
     # The authorization page name.
     set :authorization_realm, 'Please enter your username and caTissue password'
     
-    enable :sessions
+    enable :sessions    
     
     # Displays the specimen form.
     get '/' do
@@ -29,7 +32,7 @@ module Scat
     
     # Saves the specimen specified in the specimen form.
     post '/' do
-      protect! { SpecimenEdit.instance.save(params) }
+      protect! { SpecimenEdit.instance.save(params.merge(:user => current_user)) }
       redirect back
     end
 

@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler'
 Bundler.require
 
+require 'fileutils'
 require 'sass/plugin/rack'
 require 'redis'
 require 'rack/session/redis'
@@ -9,7 +10,7 @@ require 'jinx/helpers/log'
 require 'scat'
 
 # the logger
-use Rack::CommonLogger, Jinx.logger('/var/log/scat.log', :debug)
+use Rack::CommonLogger, Jinx.logger(:app => 'Scat', :debug => true)
 
 # the cache
 use Rack::Session::Redis
