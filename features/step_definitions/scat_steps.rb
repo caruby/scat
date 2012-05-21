@@ -40,7 +40,6 @@ Then %q{the matching values are displayed} do
 end
 
 Then %q{the edit is saved} do
-  page.text.should match /^\d+$/
   spc = CaTissue::TissueSpecimen.new(:identifier => page.text.to_i)
   spc.find
   spc.should_not be nil
