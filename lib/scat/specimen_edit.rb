@@ -33,12 +33,13 @@ module Scat
       cpe = pcl.events.first
       pnt = CaTissue::Participant.new(:last_name => params[:mrn])
       user = params[:user]
+      spn = params[:spn]
       site = user.find.sites.first || CaTissue::Site.default_site
       mrn = CaTissue::ParticipantMedicalIdentifier.new(:participant => pnt, :site => site, :medical_record_number => params[:mrn])
       reg = pcl.register(pnt)
       rqmt = cpe.requirements.first
       spc = CaTissue::Specimen.create_specimen(:requirement => rqmt, :initial_quantity => params[:quantity].to_f)
-      scg = pcl.add_specimens(spc, :participant => pnt, :surgical_pathology_number => params[:spn],
+      scg = pcl.add_specimens(spc, :participant => pnt, :site => site, :surgical_pathology_number => spn,
         :collection_event => cpe, :collector => user)
       logger.debug { "Scat is saving the following specimen:\n#{spc.dump}" }
       spc.save
