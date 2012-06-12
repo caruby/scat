@@ -1,12 +1,12 @@
 require 'redis'
 
 module Scat
-  # The session and global Redis cache wrapper.
+  # The session and global key => value cache wrapper.
   class Cache
     # @return [Redis] the Redis cache data store
-    # @raise [RuntimeError] if the cache could not be started
+    # @raise [ScatError] if the cache could not be started
     def datastore
-      @redis ||= start
+      @redis ||= discover
     end
     
     # Sets the given value to the cache tag set as follows:
@@ -54,32 +54,37 @@ module Scat
     REDIS_SERVER = File.expand_path('redis-server', File.dirname(__FILE__) + '/../../bin')
     
     REDIS_CONF = File.expand_path('redis.conf', File.dirname(__FILE__) + '/../../conf')
-    
-    def start
-      # Ping the server. 
+                                      
+    # Locates the Redis server on the default Redis port.
+    #
+    # @return [Redis] the Redis client
+    # @raise (see #start)
+    def discover
       redis = Redis.current
-      begin
-        redis.ping
-        return redis
-      rescue
-        logger.debug { "Scat is starting the Redis cache server..." }
-        unless system(REDIS_SERVER, REDIS_CONF) then
-          raise RuntimeError.new("Scat cannot start the Redis cache server.")
-        end
+      redis.ping rescue start(redis)
+      redis
+    end
+    
+    # Starts the Redis server on the default Redis port.
+    #
+    # @param [Redis] the Redis client
+    # @raise [ScatError] if the server command could not be executed
+    # @raise [Exception] if the server is not reachable
+    def start(redis)
+      logger.debug { "Scat is starting the Redis cache server..." }
+      unless system(REDIS_SERVER, REDIS_CONF) then
+        raise ScatError.new("Scat cannot start the Redis cache server.")
       end
       # Ping the server until loaded. 
-      2.times do
+      3.times do |n|
         begin
           redis.ping
           logger.debug { "Scat started the Redis cache server." }
           return redis
         rescue
-          sleep(1)
+          n < 2 ? sleep(0.5) : raise
         end
       end
-      # Ping a third time (which will probably fail and raise an error).
-      redis.ping
-      redis
     end
   end
 end
