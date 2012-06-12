@@ -4,14 +4,16 @@ require 'haml'
 require 'catissue'
 require 'scat/authorization'
 require 'scat/autocomplete'
-require 'scat/specimen_edit'
+require 'scat/edit'
 
 module Scat
   # The standard Scat application error.
-  class Error < RuntimeError; end
+  class ScatError < RuntimeError; end
    
   class App < Sinatra::Base
     include Authorization, Autocomplete
+
+    set :root, File.dirname(__FILE__) + '/..'
     
     if development? then
       # Don't generate fancy HTML for stack traces.
@@ -25,25 +27,34 @@ module Scat
     
     enable :sessions    
     
-    # Displays the specimen form.
+    # Displays the edit form.
     get '/' do
-      haml :home
+      haml :edit
     end
     
     # Saves the specimen specified in the specimen form.
     post '/' do
-      protect! { SpecimenEdit.instance.save(params.merge(:user => current_user)) }
+      # Capture the params in the session to refresh the form.
+      params.each { |a, v| session[a] = v }
+      # Save the specimen.
+      spc = protect! { Edit.instance.save(params.merge(:user => current_user)) }
+      # Format the status message.
+      session[:status] = "Created the specimen with label #{spc.label}."
+      # Return to the edit form.
       redirect back
     end
 
-    # Displays the CVs for the given attribute which match the entered term prefix.
-    get '/autocomplete/*' do |cva|
-      protect! { autocomplete(cva, params[:term]) }
+    # Displays the CVs for the given property attribute which match the given input
+    # value term.
+    get '/autocomplete/*' do |pa|
+      protect! { autocomplete(pa.to_sym, params[:term]) }
     end
-    
+        
     # Sets the status field to the error message.
     error do
-      request.params[:status] = env['sinatra.error'].message
+      e = env['sinatra.error']
+      logger.error(e)
+      request.params[:status] = e.message
       redirect back
     end
   end
