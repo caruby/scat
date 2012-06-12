@@ -1,11 +1,7 @@
 World(Rack::Test::Methods)
 
-Given %r{I am on the home page} do
-  visit("/")
-end
-
 Given %r{I am on the "([^"]*)" page} do |page|
-  visit("/#{page}")
+  visit("/#{page unless page =~ /^([Hh]ome|[Ee]dit)$/}")
 end
 
 # Authorization requires that the CaTissue API is configured with client
@@ -16,7 +12,7 @@ Given %q{I am authorized} do
 end
 
 Given %r{the protocol "([^"]*)" exists} do |title|
-  Scat::ProtocolFactory.create_protocol(title).find(:create)
+  Scat::Seed.protocol_for(title).find(:create)
 end
 
 When %r{I fill in "([^"]*)" with "([^"]*)"} do |field, text|
@@ -33,10 +29,6 @@ end
 
 Then %r{I should see the "([^"]*)" field} do |field|
   find_field(field.underscore.gsub(' ', '_')).visible?.should be true
-end
-
-Then %q{the matching values are displayed} do
-  
 end
 
 Then %q{the edit is saved} do
