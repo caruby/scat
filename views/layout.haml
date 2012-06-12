@@ -1,16 +1,40 @@
-%html
+/[if lt IE 7]
+  %html{ :class => 'ie ie6', :lang => 'en' }
+/[if IE 7]
+  %html{ :class => 'ie ie7', :lang => 'en' }
+/[if IE 8]
+  %html{ :class => 'ie ie8', :lang => 'en' }
+/[if gte IE 9|!(IE)]
+  %html{ :lang => 'en' }
+
 %head
-  %title= 'Scat'
-  %link{ :rel  => 'stylesheet', :type => 'text/css', :href => 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css'}
-  %link{ :rel  => 'stylesheet', :type => 'text/css', :href => '/stylesheets/scat.css'}
-  %script{ :src => 'http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js'}
-  %script{ :src => 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js'}
+  %meta{ :charset => 'utf-8' }
+  %meta{ :name => 'author', :content => 'OHSU' }
+  %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1, maximum-scale=1' }
+  %title Scat
+  
+  %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/stylesheets/base.css' }
+  %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/stylesheets/skeleton.css' }
+  %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/stylesheets/layout.css' }
+  %link{ :rel => 'stylesheet', :type => 'text/css', :href => 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css' }
+  %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/stylesheets/scat.css' }
+  
+  / Favicons
+  %link{ :rel => 'shortcut icon', :href => '/images/favicon.ico' }
+  %link{ :rel => 'apple-touch-icon', :href => '/images/apple-touch-icon.png' }
+  %link{ :rel => 'apple-touch-icon', :sizes => '72x72', :href => '/images/apple-touch-icon-72x72.png' }
+  %link{ :rel => 'apple-touch-icon', :sizes => '114x114', :href => '/images/apple-touch-icon-114x114.png' }
+  
+  /[if lt IE 9]
+    %script{ :src => 'http://html5shim.googlecode.com/svn/trunk/html5.js' } 
+  %script{ :src => 'http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js' }
+  %script{ :src => 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js' }
   :javascript
     $(document).ready(function() {
-    $("input#diagnosis").autocomplete({ minLength: 5, delay: 500, source: '/autocomplete/clinical_diagnosis' });
-    $("input#tissue_site").autocomplete({ minLength: 5, delay: 500, source: '/autocomplete/tissue_site' });
-      });
-  %body
-    #header
-      %h1.scat= 'Scat'
+      $("#diagnosis input").autocomplete({ minLength: 5, delay: 500, source: '/autocomplete/clinical_diagnosis' });
+      $("#tissue_site input").autocomplete({ minLength: 5, delay: 500, source: '/autocomplete/tissue_site' });
+    });
+%body
+  .container
+    %h1{ :class => 'application' }= 'Scat'
     #content= yield
