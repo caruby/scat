@@ -1,10 +1,10 @@
-Feature: Home
+Feature: Edit
   In order to use Scat
   As a biobank technician
-  I visit the home page
+  I visit the edit page
   
-  Scenario: Visit home
-    Given I am on the home page
+  Scenario: Visit edit
+    Given I am on the edit page
     Then I should see the "Protocol" field
     And I should see the "MRN" field
     And I should see the "SPN" field

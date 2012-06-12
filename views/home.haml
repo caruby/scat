@@ -1,9 +1,0 @@
-%form{:method => 'post', :action => '/'}
-  - Scat::SpecimenEdit::FIELDS.each do |param, label|
-    .ui-widget
-      %label{:for => "#{param}"}= "#{label}:"
-      %input{:type => :text, :name => "#{param}", :class => 'text'}
-    %br
-  %input{:type => :submit, :value => 'Save'}
-#status
-  %p= session[:status]

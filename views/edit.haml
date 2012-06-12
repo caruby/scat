@@ -1,0 +1,12 @@
+%form{ :method => 'post', :action => '/' }
+  - Scat::Edit.instance.fields.each do |field|
+    %div{ :id => field.name }
+      - if field.help then
+        %a{ :href => '#', :class => 'help' }
+          %img{ :src => '/images/help.png' }
+          %span= "<strong>#{field.label}:</strong> #{field.help}" 
+      %label{ :for => "#{field.name}_input" }= field.label
+      %input{ field.form_attributes.merge(:id => "#{field.name}_input", :value => session[field.name]) }
+  %input{ :type => :submit, :value => 'Save' }
+#status
+  %p= session[:status]
