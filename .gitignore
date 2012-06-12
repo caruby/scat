@@ -6,6 +6,7 @@ cruft
 .loadpath
 .yardoc
 .*/
+redis.pid
 *.gem
 *.pdf
 *.tar*
