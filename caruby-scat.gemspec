@@ -23,7 +23,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency     'sinatra-authorization'
   s.add_runtime_dependency     'redis'
   s.add_runtime_dependency     'redis-store'
-  s.add_runtime_dependency     'rack-session-redis'
   s.add_runtime_dependency     'jruby-openssl'
   s.add_runtime_dependency     'caruby-tissue', '>= 2.1.3'
   s.add_development_dependency 'bundler'
