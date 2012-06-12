@@ -1,0 +1,22 @@
+Protocol:
+  properties: CollectionProtocol.title
+  help: The collection protocol assigned by the caTissue administrator
+MRN:
+  properties: Participant.last_name, ParticipantMedicalIdentifier.medical_record_number
+  help: The patient MRN
+SPN:
+  properties: SpecimenCollectionGroup.surgical_pathology_number
+  help: The pathology report SPN
+Diagnosis:
+  properties: SpecimenCollectionGroup.clinical_diagnosis
+  help: The clinical diagnosis (auto-completes a keyword after one second)
+Tissue Site:
+  properties: SpecimenCharacteristics.tissue_site
+  help: The anatomical site (auto-completes a keyword after one second)
+Malignant?:
+  properties: Specimen.pathological_status
+  help: Checked if the specimen is malignant, unchecked if normal
+  default: true
+Quantity:
+  properties: Specimen.initial_quantity
+  help: The specimen quantity in grams or milliliters
