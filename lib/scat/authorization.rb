@@ -8,7 +8,6 @@ module Scat
     #
     # @yield perform the caTissue operation and return a status message
     def protect!(&block)
-      @status = nil
       login_required
       session[:status] = perform!(session[:email], session[:password], &block)
     end
@@ -18,7 +17,7 @@ module Scat
     def current_user
       # The caTissue login name is the user's email address.
       email = session[:email]
-      raise Error.new("The caTissue login is not available in this web session.") unless email
+      raise ScatError.new("The caTissue login is not available in this web session.") unless email
       # the current caTissue User
       user = CaTissue::User.new(:email_address => email)
       # the cached caTissue User id
@@ -27,8 +26,8 @@ module Scat
         user.identifier = user_id
       else
         # Fetch the User and cache the id.
-        raise ArgumentError.new("User not found: #{user.email_address}") unless user.find
-        session[:user_id] = user_id
+        raise ScatError.new("User not found: #{user.email_address}") unless user.find
+        session[:user_id] = user.identifier
       end
       user
     end
@@ -58,6 +57,7 @@ module Scat
         logger.debug { "Scat captured the caTissue login name #{email} and password." }
         true
       rescue Exception => e
+        logger.debug { "Scat caTissue login #{email.qp} with password #{password.qp} is invalid." }
         session[:status] = "caTissue login was unsuccessful - #{e.message}"
         false 
       end
@@ -69,11 +69,7 @@ module Scat
     # @return [String, nil] the status message
     def perform!(email, password, &block)
       login_required
-      begin
-        CaTissue::Database.current.open(email, password, &block)
-      rescue Exception => e
-        "Error encountered - #{e}" 
-      end
+      CaTissue::Database.current.open(email, password, &block)
     end
     
     # @param [String] the username, with or without the +@+_domain_ suffix
@@ -81,8 +77,10 @@ module Scat
     def infer_email_address(username)
       if username.index('@') then
         username
-      else 
-        domain = `hostname`.chomp.split('.')[1..-1]
+      else
+        # The email domain is the last two components of the hostname, e.g.
+        # the prod01.cluster.galena.edu domain is galena.edu. 
+        domain = `hostname`.chomp[/[^.]+\.[^.]+$/]
         domain.empty? ? username : [username, domain].join('@')
       end
     end
