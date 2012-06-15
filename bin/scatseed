@@ -1,0 +1,9 @@
+#!/usr/bin/env jruby
+#
+# scatseed: Create a sample Scat protocol
+#
+
+require File.dirname(__FILE__) + '/../test/fixtures/seed'
+
+Jinx.logger(:app => 'Scat', :debug)
+Scat::Seed.protocol_for('Scat').find(:create)
