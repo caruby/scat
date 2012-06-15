@@ -19,5 +19,6 @@ group :test do
   gem 'shotgun'
   gem 'cucumber'
   gem 'capybara'
+  gem 'launchy'
   gem 'rack-test', :require => 'rack/test'
 end
