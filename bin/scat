@@ -1,6 +1,6 @@
 #!/usr/bin/env jruby
 #
-# crtscat: Start the scat web application
+# scat: Start the Scat web application
 #
 
 require 'scat'
