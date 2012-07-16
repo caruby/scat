@@ -1,8 +1,7 @@
-require 'rubygems'
 require 'sinatra'
 require 'haml'
 require 'catissue'
-require 'scat/authorization'
+require 'casmall/authorization'
 require 'scat/autocomplete'
 require 'scat/edit'
 
@@ -11,7 +10,7 @@ module Scat
   class ScatError < RuntimeError; end
    
   class App < Sinatra::Base
-    include Authorization, Autocomplete
+    include CaSmall::Authorization, Autocomplete
 
     set :root, File.dirname(__FILE__) + '/..'
     
@@ -25,7 +24,7 @@ module Scat
     # The authorization page name.
     set :authorization_realm, 'Please enter your username and caTissue password'
     
-    enable :sessions    
+    enable :sessions
     
     # Displays the edit form.
     get '/' do
@@ -34,12 +33,8 @@ module Scat
     
     # Saves the specimen specified in the specimen form.
     post '/' do
-      # Capture the params in the session to refresh the form.
-      params.each { |a, v| session[a] = v }
       # Save the specimen.
-      spc = protect! { Edit.instance.save(params.merge(:user => current_user)) }
-      # Format the status message.
-      session[:status] = "Created the specimen with label #{spc.label}."
+      protect! { Edit.instance.save(params.merge(:user => current_user), session) }
       # Return to the edit form.
       redirect back
     end

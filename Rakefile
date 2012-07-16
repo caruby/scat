@@ -1,3 +1,6 @@
+require 'fileutils'
+require File.expand_path('version', File.dirname(__FILE__) + '/lib/scat')
+
 desc "Default: run all tests"
 task :default => :test
 
@@ -5,6 +8,10 @@ desc "Launch Scat"
 task :launch do
   jruby "bin/scat"
 end
+
+# the gem name
+GEM = 'caruby-scat'
+GEM_VERSION = Scat::VERSION
 
 WINDOWS = (Config::CONFIG['host_os'] =~ /mingw|win32|cygwin/ ? true : false) rescue false
 SUDO = WINDOWS ? '' : 'sudo'

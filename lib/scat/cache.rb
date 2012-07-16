@@ -51,7 +51,7 @@ module Scat
     
     private
     
-    REDIS_SERVER = File.expand_path('redis-server', File.dirname(__FILE__) + '/../../bin')
+    REDIS_SERVER = File.expand_path('redis-server', File.dirname(__FILE__) + '/../../ext')
     
     REDIS_CONF = File.expand_path('redis.conf', File.dirname(__FILE__) + '/../../conf')
                                       

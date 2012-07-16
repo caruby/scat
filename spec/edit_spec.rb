@@ -1,18 +1,18 @@
 require 'spec/spec_helper'
-require 'jinx/helpers/uniquifier'
+require 'jinx/helpers/string_uniquifier'
 require 'scat/edit'
 require File.dirname(__FILE__) + '/../test/fixtures/seed'
 
 describe Scat do
   describe 'Edit' do
     before(:all) do
-      title = Jinx::Uniquifier.instance.uniquify('Scat')
+      title = Jinx::StringUniquifier.uniquify('Scat')
       pcl = Scat::Seed.protocol_for(title).find(:create)
       @params = {
         :user => pcl.coordinators.first,
         :protocol => title,
-        :mrn => Jinx::Uniquifier.instance.uniquify('Test'),
-        :spn => Jinx::Uniquifier.instance.uniquify('Test'),
+        :mrn => Jinx::StringUniquifier.uniquify('Test'),
+        :spn => Jinx::StringUniquifier.uniquify('Test'),
         :diagnosis => '[M]Adrenal cortical adenoma NOS',
         :tissue_site => 'Adrenal gland, NOS',
         :malignant => 'Malignant',

@@ -3,7 +3,8 @@
 # scatseed: Create a sample Scat protocol
 #
 
+require 'catissue'
 require File.dirname(__FILE__) + '/../test/fixtures/seed'
 
-Jinx.logger(:app => 'Scat', :debug)
+Jinx.logger(:app => 'Scat', :debug => true)
 Scat::Seed.protocol_for('Scat').find(:create)

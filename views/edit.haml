@@ -5,8 +5,8 @@
         %a{ :href => '#', :class => 'help' }
           %img{ :src => '/images/help.png' }
           %span= "<strong>#{field.label}:</strong> #{field.help}" 
-      %label{ :for => "#{field.name}_input" }= field.label
-      %input{ field.form_attributes.merge(:id => "#{field.name}_input", :value => session[field.name]) }
-  %input{ :type => :submit, :value => 'Save' }
+      %label{ :for => field.input_id }= field.label
+      %input{ field.input_attributes(session[field.name.to_sym]) }
+  %input{ :type => :submit, :value => 'Save', :onclick => "document.getElementById('status_text').innerHTML='Saving the specimen...';" }
 #status
-  %p= session[:status]
+  %p{ :id => 'status_text' }= session[:status]

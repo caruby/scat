@@ -1,6 +1,6 @@
 World(Rack::Test::Methods)
 
-Given %r{I am on the "([^"]*)" page} do |page|
+Given %r{I am on the (\w+) page} do |page|
   visit("/#{page unless page =~ /^([Hh]ome|[Ee]dit)$/}")
 end
 
@@ -15,24 +15,36 @@ Given %r{the protocol "([^"]*)" exists} do |title|
   Scat::Seed.protocol_for(title).find(:create)
 end
 
-When %r{I fill in "([^"]*)" with "([^"]*)"} do |field, text|
-  fill_in field.underscore.gsub(' ', '_'), :with => text
+When %r{I fill in(?: the)? "([^"]*)"(?: field)? with "([^"]*)"} do |name, text|
+  fill_in Scat::Edit.instance.input_id(name), :with => text
 end
 
-When %r{I click "([^"]*)"} do |button|
-  click_on button
+When %r{I check(?: the)? "([^"]*)(?: checkbox)?"} do |name|
+  check Scat::Edit.instance.input_id(name)
+end
+
+When %r{I click "([^"]*)"} do |name|
+  click_on name
+end
+
+Then %r{I should see the "([^"]*)" field} do |name|
+  find_field(Scat::Edit.instance.input_id(name)).visible?.should be true
+end
+
+Then %q{the status should show the label} do
+  find(:status).text.should match /label \d+\.$/
+end
+
+Then %q{the specimen should be saved} do
+  lbl = /label (\d+)\.$/.match(find(:status).text).captures.first
+  lbl.should_not be nil
+  CaTissue::Specimen.new(:label => lbl).find.should_not be nil
 end
 
 Then %r{^I should see "([^"]*)"$} do |text|
   page.should have_content text
 end
 
-Then %r{I should see the "([^"]*)" field} do |field|
-  find_field(field.underscore.gsub(' ', '_')).visible?.should be true
-end
-
-Then %q{the edit is saved} do
-  spc = CaTissue::TissueSpecimen.new(:identifier => page.text.to_i)
-  spc.find
-  spc.should_not be nil
+After do |scenario|
+  save_and_open_page if scenario.failed?
 end

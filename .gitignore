@@ -1,6 +1,7 @@
 .DS_Store
 **~
 cruft
+ext
 .project
 .idea
 .loadpath
