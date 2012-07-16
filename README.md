@@ -1,14 +1,16 @@
 Scat: a _S_imple _caT_issue application 
 =============================================
+**Git**:          [http://github.com/caruby/scat](http://github.com/caruby/scat)       
+**Author**:       OHSU Knight Cancer Institute    
+**Copyright**:    2012    
+**License**:      MIT License    
 
 Synopsis
 --------
-
 Scat is a light-weight [caRuby Tissue](http://caruby.rubyforge.org/tissue.html) web application.
 
 Features
 --------
-
 1. Create tissue specimens in caTissue.
 
 2. Create the specimen subject, registration and collection group as necessary.
