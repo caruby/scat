@@ -36,16 +36,18 @@ Installation
 Scat is installed on a caTissue server as a JRuby gem:
 
    `sudo jgem install caruby-scat`
+   
+See the caRuby Tissue [FAQ](http://caruby.tenderapp.com/kb) for configuring the caTissue API client.
 
-The log file is <tt>/var/log/scat.log</tt>. Ensure that the <tt>/var/log</tt> directory is writable
-by the Linux user which starts Scat. The preferred Linux way to do this is to make <tt>/var/log</tt>
+The log file is `/var/log/scat.log`. Ensure that the `/var/log` directory is writable
+by the Linux user which starts Scat. The preferred Linux way to do this is to make `/var/log`
 owned and writable by the `adm` group and add the user to that group.
 
 Usage
 -----
-1. Execute <tt>crtscat</tt> to start Scat.
+1. Execute `scat` in a console to start Scat.
 
-2. Open a web browser on <tt>http:://server:4567/</tt>, where _server_ is the name of your server.
+2. Open a web browser on `http:://server:4567/`, where _server_ is the name of your server.
 
 3. Scat starts on the specimen edit page. Hover over the edit form entry question mark to
    describe the field. Enter values for each field.
@@ -67,30 +69,42 @@ Customization
 Scat is a reference implementation which captures minimal specimen information. Adding
 edit fields is done in a single simple text configuration file.
 
-Enhance Scat for your own site as follows:
+There are two ways to enhance Scat for your own site:
+
+The quick-and-dirty approach:
+
+1. Edit the following file:
+
+  <pre>`jgem environment gemdir`/gems/caruby-scat*/conf/fields.yaml</pre>
+
+2. Add or remove fields to display.
+
+3. Refresh the Scat edit page.
+
+The sound approach:
 
 1. Install [git](http://git-scm.com/) on your workstation if necessary.
 
-2. Install Scat as described in the Installation section above. 
+2. Make a workspace directory on your workstation.
 
-3. Make a workspace directory on your workstation.
+3. From that directory, execute the following:
 
-4. From that directory, execute <tt>git clone git://github.com/caruby/scat.git</tt>
+   `git clone git://github.com/caruby/scat.git`
 
-5. Modify the <tt>conf/fields.yaml</tt> configuration file to add edit fields.
+4. Modify the `conf/fields.yaml` configuration file to add edit fields.
 
-6. Modify the <tt>scat/public/stylesheets/scat.css</tt> file to change the web display.
+5. Modify the `scat/public/stylesheets/scat.css` file to change the web display.
 
-7. Add views and routes to this [Sinatra](http://www.sinatrarb.com/) application as you see fit.
+6. Add views and routes to this [Sinatra](http://www.sinatrarb.com/) application as you see fit.
 
-8. Run Scat with your changes by executing the following in the workspace <tt>scat</tt> directory:
+7. Run Scat with your changes by executing the following in the workspace `scat` directory:
 
    `rackup`
 
-9. See your changes by opening a web browser on <tt>http://localhost:4567/</tt>.
+8. See your changes by opening a web browser on `http://localhost:4567/`.
 
-11. Change the version number in the <tt>lib/scat/version.rb</tt> file by appending a branch number,
-    e.g. change the base version <tt>1.2.2</tt> to <tt>1.2.2.1</tt>
+9. When you are satisfied with the changes, bump the version number in the `lib/scat/version.rb`
+   file by appending a branch number, e.g. change the base version `1.2.2` to `1.2.2.1`.
 
 10. Package your changes by executing the following:
 
@@ -102,7 +116,7 @@ Enhance Scat for your own site as follows:
 
     `gem install caruby-scat-1.2.2.1.gem`
 
-You can share your changes with the public by forking the Scat repository as follows:
+You can proudly share your changes with the world by forking the Scat repository:
 
 1. Register for a [GitHub](https://github.com) account, if you don't already have one.
 
@@ -112,7 +126,7 @@ You can share your changes with the public by forking the Scat repository as fol
 
 4. Fork the repository to your GitHub account.
 
-5. Set the git origin in your workstation <tt>scat</tt> directory, e.g.:
+5. Set the git origin in your workstation `scat` directory, e.g.:
 
    `git config --replace-all remote.origin.url git@github.com:mygitaccount/scat.git`
 
@@ -123,7 +137,7 @@ You can share your changes with the public by forking the Scat repository as fol
    `git push origin master`
 
 Your GitHub fork is publicly visible. You can see other Scat forks by searching on the
-term <tt>scat</tt> in GitHub.
+term `scat` in GitHub.
 
 
 
