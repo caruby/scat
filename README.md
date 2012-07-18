@@ -66,7 +66,7 @@ for the same patient and pathology report are considerably faster.
 
 Screen Shot:
 
-![alt text](scat/doc/Scat.tiff "The Scat display")
+![alt text](https://github.com/caruby/scat/blob/master/doc/Scat.tiff "The Scat display")
 
 Customization
 -------------
