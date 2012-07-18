@@ -18,7 +18,7 @@ describe Scat do
         :malignant => 'Malignant',
         :quantity => '4'
       }
-      @spc = Scat::Edit.instance.save(@params)
+      @spc = Scat::Edit.instance.save(@params, {})
     end
     
     subject { @spc }
@@ -39,7 +39,7 @@ describe Scat do
       before(:all) do
         oparams = @params.delete_if { |k, v| k == :malignant }
         oparams[:quantity] = '5'
-        @other = Scat::Edit.instance.save(oparams)
+        @other = Scat::Edit.instance.save(oparams, {})
       end  
       
       it "should save the additional specimen" do 
