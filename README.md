@@ -83,7 +83,7 @@ Enhance Scat for your own site as follows:
 
 8. Run Scat with your changes by executing the following in the workspace <tt>scat</tt> directory:
 
-      rackup  
+   `rackup`
 
 9. See your changes by opening a web browser on <tt>http://localhost:4567/</tt>.
 
@@ -92,13 +92,13 @@ Enhance Scat for your own site as follows:
 
 10. Package your changes by executing the following:
 
-      rake gem  
+    `rake gem`
       
 11. Copy the resulting gem file to your server.
 
 12. On the server, install the new gem, e.g.:
 
-      gem install caruby-scat-1.2.2.1.gem 
+    `gem install caruby-scat-1.2.2.1.gem`
 
 You can make your changes public by forking the Scat repository:
 
@@ -112,13 +112,13 @@ You can make your changes public by forking the Scat repository:
 
 5. Set the git origin in your workstation <tt>scat</tt> directory, e.g.:
 
-      git config --replace-all remote.origin.url git@github.com:mygitaccount/scat.git 
+   `git config --replace-all remote.origin.url git@github.com:mygitaccount/scat.git`
 
 6. Commit the changes to your local git repository.
 
 7. Push the changes to your fork with the command:
 
-      git push origin master  
+   `git push origin master`
 
 Your GitHub fork is publicly visible. You can see other Scat forks by searching on the
 term <tt>scat</tt> in GitHub.
