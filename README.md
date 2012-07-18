@@ -1,4 +1,4 @@
-Scat: a **S**imple **caT**issue application 
+Scat: a <em>S</em>imple <em>caT</em>issue application 
 ===========================================
 **Git**:          [http://github.com/caruby/scat](http://github.com/caruby/scat)       
 **Author**:       OHSU Knight Cancer Institute    
