@@ -4,4 +4,5 @@
 #
 
 require 'scat'
-rackup --env production File.dirname(__FILE__) + '../config.ru'
+
+`rackup --env production #{File.dirname(__FILE__) + '/../config.ru'}`
