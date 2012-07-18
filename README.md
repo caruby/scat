@@ -49,8 +49,8 @@ Usage
 
 2. Open a web browser on +http:://+_server_+:4567/+, where _server_ is the name of your server.
 
-3. Scat starts on the specimen edit page. Hover over the edit form entry question mark to
-   describe the field. Enter values for each field.
+3. Scat starts on the specimen edit page (see the screen shot below). Hover over the edit form
+   entry question mark to describe the field. Enter values for each field.
 
 4. Enter five or more letters in the Diagnosis or Tissue Site and wait briefly to
    bring up a list of matching caTissue values.
@@ -63,6 +63,10 @@ persistently. Subsequent term auto-completion is very fast.
 Within a session, the first save takes a while to find the Collection Protocol, Site and
 other information. Subsequent saves are faster. Successive creation of new specimens
 for the same patient and pathology report are considerably faster. 
+
+Screen Shot:
+
+![alt text](doc/Scat.tiff "The Scat display")
 
 Customization
 -------------
