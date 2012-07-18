@@ -39,7 +39,7 @@ Scat is installed on a caTissue server as a JRuby gem:
 
 The log file is <tt>/var/log/scat.log</tt>. Ensure that the <tt>/var/log</tt> directory is writable
 by the Linux user which starts Scat. The preferred Linux way to do this is to make <tt>/var/log</tt>
-writable by the `adm` group and add the user to that group.
+owned and writable by the `adm` group and add the user to that group.
 
 Usage
 -----
