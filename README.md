@@ -35,7 +35,7 @@ Installation
 ------------
 Scat is installed on a caTissue server as a JRuby gem:
 
-   sudo jgem install caruby-scat
+   `sudo jgem install caruby-scat`
 
 The log file is <tt>/var/log/scat.log</tt>. Ensure that the <tt>/var/log</tt> directory is writable
 by the Linux user which starts Scat. The preferred Linux way to do this is to make <tt>/var/log</tt>
