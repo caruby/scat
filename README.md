@@ -100,7 +100,7 @@ Enhance Scat for your own site as follows:
 
     `gem install caruby-scat-1.2.2.1.gem`
 
-You can make your changes public by forking the Scat repository:
+You can share your changes with the public by forking the Scat repository as follows:
 
 1. Register for a [GitHub](https://github.com) account, if you don't already have one.
 
