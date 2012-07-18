@@ -1,16 +1,15 @@
 PATH
   remote: .
   specs:
-    caruby-scat (1.1.1)
+    caruby-scat (1.2.1)
       bundler
-      caruby-tissue (>= 2.1.4)
+      caruby-small
       haml
       jruby-openssl
       rack
       redis
       redis-store
       sinatra
-      sinatra-authorization
 
 PATH
   remote: /Users/loneyf/workspace/caruby/core
@@ -21,6 +20,17 @@ PATH
       jinx-json (~> 2.1.1)
       jinx-migrate (>= 2.1.1)
       rdbi
+
+PATH
+  remote: /Users/loneyf/workspace/caruby/small
+  specs:
+    caruby-small (1.1.2)
+      bundler
+      caruby-tissue (>= 2.1.5)
+      jruby-openssl
+      rack
+      sinatra
+      sinatra-authorization
 
 PATH
   remote: /Users/loneyf/workspace/caruby/tissue
@@ -39,7 +49,7 @@ PATH
 PATH
   remote: /Users/loneyf/workspace/jinx/json
   specs:
-    jinx-json (2.1.2)
+    jinx-json (2.1.3)
       bundler
       jinx
       json_pure
@@ -144,6 +154,7 @@ DEPENDENCIES
   capybara
   caruby-core!
   caruby-scat!
+  caruby-small!
   caruby-tissue!
   cucumber
   jinx!
